@@ -1,4 +1,24 @@
 from dataclasses import dataclass
+import io
+import csv
+
+
+def get_csv(data=None):
+    """
+    Gibt die Traktanden als CSV-String zurück.
+    data: Liste von Dicts mit keys: title, category, description
+    """
+    if data is None:
+        # Hier müsstest du deine Traktanden holen, z. B. aus DB oder globaler Liste
+        data = []
+
+    output = io.StringIO()
+    writer = csv.DictWriter(output, fieldnames=["title", "category", "description"])
+    writer.writeheader()
+    for row in data:
+        writer.writerow(row)
+
+    return output.getvalue()
 
 items = []
 
