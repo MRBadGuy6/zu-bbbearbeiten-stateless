@@ -24,3 +24,9 @@ def get(index):
 
 def update(index):
     items[index].isCompleted = not items[index].isCompleted
+
+def test_add():
+    add("test")
+    assert len(items) == 1
+    assert items[0].text == "test"
+    assert not items[0].isCompleted
